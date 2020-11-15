@@ -1,0 +1,23 @@
+{% extends 'shared/base.html' %}
+
+{% load static %}
+
+{% block site_content %}
+    <div class="row">
+        <div class="col-lg-6">
+            <img style="width:100%"
+                 src="{% static 'images/logo_transparent.png' %}"
+                 alt="...">
+        </div>
+        <div class="col-lg-6">
+            <form style="border: 1px solid grey; margin: 0 0; padding: 10% 5%" method="post">
+                <h2>Log in</h2>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Log in</button>
+                <br>
+                <span>Do not have an account?<a style="color:orange" href="{% url 'register' %}">Register here</a></span>
+            </form>
+        </div>
+    </div>
+{% endblock %}
