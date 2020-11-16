@@ -1,0 +1,21 @@
+{% extends 'shared/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/create_quote.css' %}">
+{% endblock %}
+
+{% block site_content %}
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <form method="post" class="quote-form" action="{% url 'create quote' %}">
+                {% csrf_token %}
+                {{ form }}
+                <button class="btn btn-primary" type="submit">Add Quote</button>
+            </form>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+{% endblock %}
