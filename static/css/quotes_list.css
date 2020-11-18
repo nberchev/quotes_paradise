@@ -1,12 +1,9 @@
-img {
-    width: 200px;
-    float: right;
+.author-name {
+    color: orange;
+    font-size: 110%;
+    letter-spacing: 2px;
 }
 
-.bttn {
-    margin-top: 50px;
-}
-
-.card {
-    margin-bottom: 20px;
+.bg-primary {
+    background-color: #474747!important;
 }
