@@ -16,7 +16,7 @@
             {% for quote in quotes %}
                 <div class="card bg-primary text-white text-center p-3">
                     <blockquote class="blockquote mb-0">
-                        <a class="" href="#"><p>{{ quote.text }}</p></a>
+                        <a class="" href="{% url 'quote details' quote.pk %}"><p>{{ quote.text }}</p></a>
                         <footer class="blockquote-footer text-white">
                             <small class="author-name">
                                 {{ quote.author|upper }}
@@ -27,6 +27,6 @@
             {% endfor %}
         </div>
     {% else %}
-        <h1>You have not added any quotes yet. Go to <a href="#">this link</a> to add one</h1>
+        <h1>You have not added any quotes yet. Go to <a href="{% url 'create quote' %}">this link</a> to add one</h1>
     {% endif %}
 {% endblock %}
