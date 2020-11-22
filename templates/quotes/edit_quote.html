@@ -8,17 +8,17 @@
 
 
 {% block site_heading %}
-    Add Quote
+    Edit Quote
 {% endblock %}
 
 {% block site_content %}
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-6">
-            <form method="post" class="quote-form" action="{% url 'create quote' %}">
+            <form method="post" class="quote-form" action="{% url 'edit quote' quote.pk %}">
                 {% csrf_token %}
                 {{ form }}
-                <button class="btn btn-warning" type="submit">Add Quote</button>
+                <button class="btn btn-warning" type="submit">Edit Quote</button>
             </form>
         </div>
         <div class="col-lg-3"></div>

@@ -55,9 +55,13 @@ class QuoteDetails(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(QuoteDetails, self).get_context_data(**kwargs)
 
-        if has_user_access_to_modify(self.request.user, self.get_object()):
-            context['is_user_author_or_admin'] = True
-        else:
+        try:
+            user_profile = ProfileUser.objects.filter(user__pk=self.request.user.id)[0]
+            if self.get_object().user_id == user_profile.id or self.request.user.is_superuser:
+                context['is_user_author_or_admin'] = True
+            else:
+                context['is_user_author_or_admin'] = False
+        except IndexError:
             context['is_user_author_or_admin'] = False
 
         return context
@@ -72,5 +76,25 @@ class DeleteQuote(generic.DeleteView):
         if has_user_access_to_modify(request.user, self.get_object()):
             quote = self.get_object()
             return render(request, 'quotes/delete_quote.html', {'quote': quote})
+        else:
+            return render(request, 'shared/unauthorized.html')
+
+
+class EditQuote(generic.UpdateView):
+    model = Quote
+    form_class = QuoteForm
+    template_name = 'quotes/edit_quote.html'
+    success_url = 'quotes/details/<int:pk>/'
+
+    def form_valid(self, form):
+        user_profile = ProfileUser.objects.filter(user__pk=self.request.user.id)[0]
+        form.instance.user = user_profile
+        return super().form_valid(form)
+
+    def get(self, request, pk):
+        if has_user_access_to_modify(request.user, self.get_object()):
+            quote = self.get_object()
+            form = QuoteForm(instance=quote)
+            return render(request, 'quotes/edit_quote.html', {'quote': quote, 'form': form,})
         else:
             return render(request, 'shared/unauthorized.html')

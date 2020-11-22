@@ -1,9 +1,9 @@
 {% load static %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-{#    <span>#}
-{#    <a class="navbar-brand" href="{% url 'landing' %}"><img src="http://placehold.it/150x50?text=Logo" alt="."></a>#}
-{#    </span>#}
+    {#    <span>#}
+    {#    <a class="navbar-brand" href="{% url 'landing' %}"><img src="http://placehold.it/150x50?text=Logo" alt="."></a>#}
+    {#    </span>#}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -15,16 +15,7 @@
             </li>
 
 
-            {% if not request.user.is_authenticated %}
-                <div class="nav-item float-right">
-                    <a class="nav-link" href="{% url 'login' %}">Log in</a>
-                </div>
-                <li class="nav-item float-right">
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
-                </li>
-            {% else %}
-
-
+            {% if request.user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
@@ -41,14 +32,23 @@
                         {{ user }}'s Account
                     </a>
                     <div class="dropdown-menu float-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{% url 'user profile' request.user.pk %}">My Profile</a>
+                        <a class="dropdown-item" href="#">My Profile</a>
                         <a class="dropdown-item" href="{% url 'logout' %}?next=/accounts/login/">Log out</a>
                     </div>
                 </li>
+
+
+                {#            <li>#}
+                {#                <input type="text" class="input" placeholder="Search the site              &#128269">#}
+                {#            </li>#}
+                </ul>
+            {% else %}
+
+                <div class="nav-item float-right">
+                        <a class="nav-link" href="{% url 'login' %}">Log in</a>
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </div>
+
             {% endif %}
-            <li>
-{#                <input type="text" class="input" placeholder="Search the site              &#128269">#}
-            </li>
-        </ul>
     </div>
 </nav>

@@ -1,0 +1,21 @@
+{% extends 'shared/base.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block site_heading %}
+    {{ profile.user.username }}
+{% endblock %}
+
+{% block site_content %}
+    <div class="card">
+        <img src="{{ profile.profile_picture }}" alt="profile pic" style="width:100%">
+        <h1>{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
+        <p class="title">{{ profile.favorite_book }}</p>
+        <p>{{ profile.location }}</p>
+        <p><button class="contact-button">Contact</button></p>
+    </div>
+{% endblock %}

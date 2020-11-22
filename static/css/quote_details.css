@@ -1,5 +1,5 @@
 img {
-    width: 200px;
+    width: 250px;
     float: right;
 }
 
@@ -9,4 +9,18 @@ img {
 
 .card {
     margin-bottom: 20px;
+}
+
+.card-header a{
+    color: orange;
+}
+
+.card-header a:hover {
+    text-decoration: none;
+    color: #A9A9A9;
+}
+
+.card-header {
+    background-color: #474747;
+    color: white;
 }

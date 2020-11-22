@@ -14,7 +14,7 @@
     {% if quote %}
         <div class="card">
             <div class="card-header">
-                Posted by {{ quote.user }}
+                Posted by <a href="{% url 'user profile' quote.user.user_id %}">{{ quote.user }}</a>
             </div>
             <div class="card-body">
                 <blockquote class="blockquote mb-0">
@@ -23,13 +23,13 @@
                         {{ quote.author }}
                     </footer>
                     {% if is_user_author_or_admin %}
-                        <a type="button" class="btn btn-success bttn">Edit quote</a>
+                        <a type="button" href="{% url 'edit quote' quote.pk %}" class="btn btn-success bttn">Edit quote</a>
                         <a class="btn btn-danger bttn" href="{% url 'delete quote' quote.pk %}" >Delete quote</a>
                     {% endif %}
                     {% if quote.image_url %}
-                        <img src="{{ quote.image_url }}" alt="...">
+                        <img src="{{ quote.image_url }}" alt="..." style="border: 1px solid gray;">
                     {% else %}
-                        <img src="{% static 'images/quote_placeholder.jpg' %}" alt="">
+                        <img src="{% static 'images/no_author_placeholder.png' %}" alt="" style="border: 1px solid gray;">
                     {% endif %}
                 </blockquote>
             </div>

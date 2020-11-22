@@ -9,20 +9,24 @@
              alt="">
         <div class="absolute">
             <h1 class="display-4">Welcome to Quote's Paradise</h1>
-            <h2 class="lead">Finally, all quotes go digital</h2>
+            <h2 class="lead">Finally, all dad jokes go digital</h2>
             <hr class="my-4">
             <div class="inner cover">
                 <h1 class="cover-heading"></h1>
                 <div class="row">
                     <div class="col-lg-6">
-                        <p class="lead">To get maximum of our site<br><a href="{% url 'login' %}"
-                                                                            class="btn btn-lg btn-secondary">Log in</a>
+                        {% if request.user.is_anonymous %}
+                        <p class="lead">To get maximum of our site<br>
+                            <a href="{% url 'login' %}" class="btn btn-lg btn-secondary">Log in</a>
                         </p>
+                        {% endif %}
                     </div>
                     <div class="col-lg-6">
+                        {% if request.user.is_anonymous %}
                         <p class="lead">Get a free account to save your favorite quotes<br>
                             <a href="{% url 'register' %}" class="btn btn-lg btn-secondary">Register</a>
                         </p>
+                        {% endif %}
                     </div>
                 </div>
 

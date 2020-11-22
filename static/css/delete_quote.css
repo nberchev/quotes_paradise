@@ -1,0 +1,11 @@
+.btn {
+    display: inline-block;
+}
+
+.delete-buttons {
+    display: inline-block;
+}
+
+.btn-left {
+    margin-left: 500px;
+}

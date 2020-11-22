@@ -1,19 +1,28 @@
 {% extends 'shared/base.html' %}
 
+{% load static %}
+
+{% block site_heading %}
+    Register
+{% endblock %}
+
 {% block site_content %}
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-
-                <form style="border: 1px solid grey; margin: 10% 0; padding: 10% 5%" method="post">
-                    <h2>Register</h2>
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="btn btn-primary" type="submit">Register</button>
-                    <span>Have an account?<a href="{% url 'login' %}" style="color:orange">Log in here</a></span>
-
-                </form>
-            </div>
-            <div class="col-lg-3"></div>
+    <div class="row">
+        <div class="col-lg-6">
+            <img style="width:100%"
+                 src="{% static 'images/logo_transparent.png' %}"
+                 alt="...">
         </div>
+        <div class="col-lg-6">
+
+            <form style="border: 1px solid grey; margin: 10% 0; padding: 10% 5%" method="post">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <button class="btn btn-primary" type="submit">Register</button>
+                <span>Have an account?<a href="{% url 'login' %}" style="color:orange">Log in here</a></span>
+
+            </form>
+        </div>
+    </div>
 {% endblock %}

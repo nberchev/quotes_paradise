@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block site_heading %}
+    Log in
+{% endblock %}
+
 {% block site_content %}
     <div class="row">
         <div class="col-lg-6">
@@ -9,14 +13,15 @@
                  src="{% static 'images/logo_transparent.png' %}"
                  alt="...">
         </div>
-        <div class="col-lg-6">
-            <form style="border: 1px solid grey; margin: 0 0; padding: 10% 5%" method="post">
-                <h2>Log in</h2>
+        <div class="col-lg-6 form-group">
+            <form method="post" action="{% url 'login' %}" style="border: 1px solid grey; margin: 0 0; padding: 10% 5%">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ login_form.as_p }}
+
                 <button type="submit">Log in</button>
                 <br>
-                <span>Do not have an account?<a style="color:orange" href="{% url 'register' %}">Register here</a></span>
+                <span>Do not have an account? <a style="color:orange"
+                                                 href="{% url 'register' %}">Register here</a></span>
             </form>
         </div>
     </div>
