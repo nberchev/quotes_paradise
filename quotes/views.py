@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse, redirect
 from django.views import generic
 
 from accounts.models import ProfileUser
 
 from quotes.forms import QuoteForm
-from quotes.models import Quote
+from quotes.models import Quote, Like
 
 
 def has_user_access_to_modify(current_user, current_object):
@@ -18,7 +18,7 @@ def has_user_access_to_modify(current_user, current_object):
 
 class QuotesList(generic.ListView):
     model = Quote
-    template_name = 'quotes/quotes_list.html'
+    template_name = 'quotes/all_quotes_list.html'
     context_object_name = 'quotes'
 
 
@@ -84,7 +84,6 @@ class EditQuote(generic.UpdateView):
     model = Quote
     form_class = QuoteForm
     template_name = 'quotes/edit_quote.html'
-    success_url = 'quotes/details/<int:pk>/'
 
     def form_valid(self, form):
         user_profile = ProfileUser.objects.filter(user__pk=self.request.user.id)[0]
@@ -95,6 +94,19 @@ class EditQuote(generic.UpdateView):
         if has_user_access_to_modify(request.user, self.get_object()):
             quote = self.get_object()
             form = QuoteForm(instance=quote)
-            return render(request, 'quotes/edit_quote.html', {'quote': quote, 'form': form,})
+            return render(request, 'quotes/edit_quote.html', {'quote': quote, 'form': form})
         else:
             return render(request, 'shared/unauthorized.html')
+
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse('quote details', kwargs={'pk': pk})
+
+
+def like_quote(request, pk):
+    quote = Quote.objects.get(pk=pk)
+    like = Like(test=str(pk))
+    like.quote = quote
+    like.save()
+
+    return redirect('quote details', pk)

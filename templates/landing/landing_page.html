@@ -2,35 +2,77 @@
 
 {% load static %}
 
+{% block styles %}
+{% endblock %}
+
+{% block site_heading %}
+                <h1 class="masthead-heading mb-0">Finally, all quotes go digital</h1>
+                <h2 class="masthead-subheading mb-0">Including all your dad jokes</h2>
+                <a href="{% url 'all quotes' %}" class="btn btn-primary btn-xl rounded-pill mt-5">Browse Quotes</a>
+{% endblock %}
+
 {% block site_content %}
-    <div class="jumbotron parent">
-        <img style="width: 100%"
-             src="{% static 'images/scan.jpg' %}"
-             alt="">
-        <div class="absolute">
-            <h1 class="display-4">Welcome to Quote's Paradise</h1>
-            <h2 class="lead">Finally, all dad jokes go digital</h2>
-            <hr class="my-4">
-            <div class="inner cover">
-                <h1 class="cover-heading"></h1>
-                <div class="row">
-                    <div class="col-lg-6">
-                        {% if request.user.is_anonymous %}
-                        <p class="lead">To get maximum of our site<br>
-                            <a href="{% url 'login' %}" class="btn btn-lg btn-secondary">Log in</a>
-                        </p>
-                        {% endif %}
-                    </div>
-                    <div class="col-lg-6">
-                        {% if request.user.is_anonymous %}
-                        <p class="lead">Get a free account to save your favorite quotes<br>
-                            <a href="{% url 'register' %}" class="btn btn-lg btn-secondary">Register</a>
-                        </p>
-                        {% endif %}
+    <section>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5">
+                        <img class="img-fluid rounded-circle"
+                             src="{% static 'images/gates.jpg' %}" alt="">
                     </div>
                 </div>
-
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">Bill Gates</h2>
+                        <p>"Most governments take advantage of their scientists and listen to them. They don’t undermine
+                            them and attack them."</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <img class="img-fluid rounded-circle" src="{% static 'images/uncle.png' %}"
+                             alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <h2 class="display-4">Uncle Peter</h2>
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam
+                            sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione
+                            voluptatum molestiae adipisci, beatae obcaecati."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5">
+                        <img class="img-fluid rounded-circle"
+                             src="{% static 'images/einstein.jpeg' %}"
+                             alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">Albert Einstein</h2>
+                        <p>"If I was not a physicist, I would probably be a musician. I often think in music. I live my
+                            daydreams in music. I see my life in terms of music. … I cannot tell if I would have done
+                            any creative work of importance in music, but I do know that I get most joy in life out of
+                            my violin."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

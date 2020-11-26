@@ -8,7 +8,7 @@
 
 
 {% block site_heading %}
-    Add Quote
+    <h1 class="masthead-heading mb-0">Add Quote</h1>
 {% endblock %}
 
 {% block site_content %}
@@ -17,8 +17,20 @@
         <div class="col-lg-6">
             <form method="post" class="quote-form" action="{% url 'create quote' %}">
                 {% csrf_token %}
-                {{ form }}
-                <button class="btn btn-warning" type="submit">Add Quote</button>
+
+                <label for="{{ form.text.id_for_label }}" class="form-label">Text</label>
+                {{ form.text }}
+                {{ form.text.errors }}
+
+                <label for="{{ form.author.id_for_label }}" class="form-label">Author</label>
+                {{ form.author }}
+                {{ form.author.errors }}
+
+                <label for="{{ form.image_url.id_for_label }}" class="form-label">Image</label>
+                {{ form.image_url }}
+                {{ form.image_url.errors }}
+
+                <button class="btn add-quote-btn" type="submit">Create</button>
             </form>
         </div>
         <div class="col-lg-3"></div>

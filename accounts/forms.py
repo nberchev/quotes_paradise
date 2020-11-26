@@ -6,6 +6,12 @@ from accounts.models import ProfileUser
 
 
 class RegisterForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for (_, field) in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')
@@ -23,11 +29,23 @@ class RegisterForm(UserCreationForm):
 
 
 class ProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for (_, field) in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
     class Meta:
         model = ProfileUser
         exclude = ('user',)
 
 
 class LoginForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for (_, field) in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput(),)

@@ -11,3 +11,8 @@ class Quote(models.Model):
 
     def __str__(self):
         return f'{self.author} said "{self.text[:20]}...'
+
+
+class Like(models.Model):
+    quote = models.ForeignKey(Quote, on_delete=models.CASCADE)
+    test = models.CharField(max_length=2, null=True)

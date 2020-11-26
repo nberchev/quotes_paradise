@@ -3,19 +3,33 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/create_quote.css' %}">
+    <link rel="stylesheet" href="{% static 'css/quote_details.css' %}">
 {% endblock %}
 
 {% block site_heading %}
-    {{ profile.user.username }}
+    <h1 class="masthead-heading mb-0">{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
+    <h2 class="masthead-subheading mb-0">a.k.a. {{ profile.user.username }}</h2>
+
 {% endblock %}
 
 {% block site_content %}
-    <div class="card">
-        <img src="{{ profile.profile_picture }}" alt="profile pic" style="width:100%">
-        <h1>{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
-        <p class="title">{{ profile.favorite_book }}</p>
-        <p>{{ profile.location }}</p>
-        <p><button class="contact-button">Contact</button></p>
-    </div>
+    <section>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5">
+                        <img class="img-fluid rounded-circle"
+                             src="{% static 'images/no_author_placeholder.png' %}" alt=".">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4 quote-author">Location: {{ profile.location }}</h2>
+                        <p class="quote">Favorite book: {{ profile.favorite_book }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

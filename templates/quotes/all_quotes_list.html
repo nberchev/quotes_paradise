@@ -3,16 +3,11 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'css/quotes_list.css' %}">
+        <link rel="stylesheet" href="{% static 'css/quotes_list.css' %}">
 {% endblock %}
 
 {% block site_heading %}
-    {% if quotes %}
-    <h1 class="masthead-heading mb-0">My Quotes</h1>
-    {% else %}
-        <h2 class="masthead-subheading mb-0">You have not added any quotes yet Click the button below to add one</h2>
-        <a href="{% url 'create quote' %}" class="btn btn-primary btn-xl rounded-pill mt-5">Add Quote</a>
-    {% endif %}
+    <h1 class="masthead-heading mb-0">All Quotes</h1>
 {% endblock %}
 
 {% block site_content %}
@@ -41,5 +36,7 @@
                 </div>
             </section>
         {% endfor %}
+    {% else %}
+        <h1>You have not added any quotes yet. Go to <a href="{% url 'create quote' %}">this link</a> to add one</h1>
     {% endif %}
 {% endblock %}

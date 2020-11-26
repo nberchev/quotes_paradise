@@ -7,34 +7,40 @@
 {% endblock %}
 
 {% block site_heading %}
-    QUOTE #{{ quote.pk }}
+    <h1 class="masthead-heading mb-0">QUOTE #{{ quote.pk }}</h1>
+    <h2 class="masthead-subheading mb-0">{{ quote.like_set.count }} likes</h2>
+    {% if user.is_authenticated %}
+        <a href="{% url 'like quote' quote.pk %}" class="btn btn-primary btn-xl rounded-pill mt-5">Like</a>
+    {% endif %}
 {% endblock %}
 
 {% block site_content %}
-    {% if quote %}
-        <div class="card">
-            <div class="card-header">
-                Posted by <a href="{% url 'user profile' quote.user.user_id %}">{{ quote.user }}</a>
-            </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <p>"{{ quote.text }}"</p>
-                    <footer class="blockquote-footer">
-                        {{ quote.author }}
-                    </footer>
-                    {% if is_user_author_or_admin %}
-                        <a type="button" href="{% url 'edit quote' quote.pk %}" class="btn btn-success bttn">Edit quote</a>
-                        <a class="btn btn-danger bttn" href="{% url 'delete quote' quote.pk %}" >Delete quote</a>
-                    {% endif %}
-                    {% if quote.image_url %}
-                        <img src="{{ quote.image_url }}" alt="..." style="border: 1px solid gray;">
-                    {% else %}
-                        <img src="{% static 'images/no_author_placeholder.png' %}" alt="" style="border: 1px solid gray;">
-                    {% endif %}
-                </blockquote>
+    <section>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5">
+                        {% if quote.image_url %}
+                            <img class="img-fluid rounded-circle" src="{{ quote.image_url }}" alt=".">
+                        {% else %}
+                            <img class="img-fluid rounded-circle"
+                                 src="{% static 'images/no_author_placeholder.png' %}" alt=".">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4 quote-author">{{ quote.author|upper }}</h2>
+                        <p class="quote">"{{ quote.text }}"</p>
+                        <p>Posted by <a href="{% url 'user profile' quote.user.user_id %}">{{ quote.user }}</a></p>
+                        {% if is_user_author_or_admin %}
+                            <a type="button" href="{% url 'edit quote' quote.pk %}" class="btn edit-btn">Edit
+                                quote</a>
+                            <a class="btn delete-btn" href="{% url 'delete quote' quote.pk %}">Delete quote</a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
-    {% else %}
-        <h1>You have not added any quotes yet. Go to <a href="#">this link</a> to add one</h1>
-    {% endif %}
+    </section>
 {% endblock %}

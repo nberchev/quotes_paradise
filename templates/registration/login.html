@@ -2,27 +2,28 @@
 
 {% load static %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/create_quote.css' %}">
+{% endblock %}
+
 {% block site_heading %}
-    Log in
+    <h1 class="masthead-heading mb-0">Sign In</h1>
 {% endblock %}
 
 {% block site_content %}
     <div class="row">
+        <div class="col-lg-3"></div>
         <div class="col-lg-6">
-            <img style="width:100%"
-                 src="{% static 'images/logo_transparent.png' %}"
-                 alt="...">
-        </div>
-        <div class="col-lg-6 form-group">
-            <form method="post" action="{% url 'login' %}" style="border: 1px solid grey; margin: 0 0; padding: 10% 5%">
+
+            <form method="post" action="{% url 'login' %}" class="quote-form">
                 {% csrf_token %}
                 {{ login_form.as_p }}
 
-                <button type="submit">Log in</button>
-                <br>
-                <span>Do not have an account? <a style="color:orange"
-                                                 href="{% url 'register' %}">Register here</a></span>
+                <button type="submit" class="add-quote-btn">Sign In</button>
+                <span style="color: black; font-size: 19px">Do not have an account?  <a style="color:orange"
+                                                 href="{% url 'register' %}">Sign up here</a></span>
             </form>
         </div>
+        <div class="col-lg-3"></div>
     </div>
 {% endblock %}

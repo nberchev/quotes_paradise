@@ -1,26 +1,30 @@
-img {
-    width: 250px;
-    float: right;
-}
-
-.bttn {
-    margin-top: 50px;
-}
-
-.card {
-    margin-bottom: 20px;
-}
-
-.card-header a{
-    color: orange;
-}
-
-.card-header a:hover {
+a:hover {
     text-decoration: none;
     color: #A9A9A9;
 }
 
-.card-header {
-    background-color: #474747;
-    color: white;
+.quote {
+    color: #fff;
+    font-size: 25px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.quote-author {
+    color: #FF851B;
+    font-size: 2rem;
+    letter-spacing: .2em;
+    font-weight: 100;
+}
+
+.edit-btn, .delete-btn {
+    border: 1px solid orange;
+    background-color: #85144B;
+    color:orange;
+    font-weight: bold;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    color: darkorange;
+    border-color: darkorange;
 }

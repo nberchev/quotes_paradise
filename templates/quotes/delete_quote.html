@@ -2,20 +2,11 @@
 
 {% load static %}
 
-{% block styles %}
-    <link rel="stylesheet" href="{% static 'css/delete_quote.css' %}">
-{% endblock %}
-
 {% block site_heading %}
-    Are you sure you want to delete QUOTE #{{ quote.pk }}?
-{% endblock %}
-
-{% block site_content %}
-    <form method="POST">
+    <h1 class="masthead-heading mb-0">Are you sure you want to delete QUOTE #{{ quote.pk }}?</h1>
+        <form method="POST">
         {% csrf_token %}
-        <div class="delete-buttons">
-        <input type="submit" class="btn btn-danger" value="Yes, delete the quote forever">
-            <a href="{% url 'quote details' quote.pk %}" class="btn btn-dark btn-left">Go back whence you came</a>
-            </div>
+        <input type="submit" class="btn btn-primary btn-xl rounded-pill mt-5" value="Yes, delete the quote forever">
     </form>
+
 {% endblock %}

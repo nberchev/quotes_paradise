@@ -1,9 +1,18 @@
-.author-name {
-    color: orange;
-    font-size: 110%;
-    letter-spacing: 2px;
+a:hover {
+    text-decoration: none;
+    color: #A9A9A9;
 }
 
-.bg-primary {
-    background-color: #474747!important;
+.quote {
+    color: #fff;
+    font-size: 25px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.quote-author {
+    color: #FF851B;
+    font-size: 2rem;
+    letter-spacing: .2em;
+    font-weight: 100;
 }
