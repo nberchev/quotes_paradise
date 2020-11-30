@@ -19,8 +19,12 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2">
                     <div class="p-5">
-                        <img class="img-fluid rounded-circle"
-                             src="{% static 'images/no_author_placeholder.png' %}" alt=".">
+                        {% if profile.profile_picture %}
+                            <img class="img-fluid rounded-circle" src="{{ profile.profile_picture.url }}" alt=".">
+                        {% else %}
+                            <img class="img-fluid rounded-circle"
+                                 src="{% static 'images/no_author_placeholder.png' %}" alt=".">
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">

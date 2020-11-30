@@ -1,4 +1,4 @@
-/__pycache__
+__pycache__/
 
 # Environments
 .env
@@ -11,3 +11,5 @@ venv.bak/
 
 # JetBrains IDEs
 .idea
+media/
+media

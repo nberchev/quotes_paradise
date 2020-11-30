@@ -20,11 +20,46 @@ a:hover {
 .edit-btn, .delete-btn {
     border: 1px solid orange;
     background-color: #85144B;
-    color:orange;
+    color: orange;
     font-weight: bold;
 }
 
 .edit-btn:hover, .delete-btn:hover {
     color: darkorange;
     border-color: darkorange;
+}
+
+.like-buttons {
+    font-size: 3rem;
+}
+
+.like-buttons-two {
+    font-size: 3.5rem;
+}
+
+.iconDetails {
+    margin-left: 2%;
+    float: left;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.container2 {
+    width: 100%;
+    height: auto;
+    padding: 1%;
+    margin-top: 40px;
+}
+
+h4 {
+    margin:0;
+}
+
+.user-name {
+    font-size: 0.8em;
+    color: white;
+}
+.user-name:hover {
+    color: #A9A9A9;
 }

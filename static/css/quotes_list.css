@@ -16,3 +16,50 @@ a:hover {
     letter-spacing: .2em;
     font-weight: 100;
 }
+
+.search-container {
+    background-color: rgba(0,0,0,.5);
+    position: relative;
+    border-radius: 30px;
+    padding: 3px 50px 3px 10px;
+    outline-color: deeppink;
+    /*width: 340px;*/
+    margin-left: 200px;
+    margin-right: 180px;
+}
+
+input {
+    min-width: 45rem;
+    color: #fff;
+    border-radius: 32px;
+    box-shadow: 0 1px 12px 0 rgba(0,0,0,.5);
+    border: 0;
+    font-size: 1.5rem;
+    padding: 0 6.5rem 0 2rem;
+    background-color: transparent;
+    outline: none;
+    height: 35px;
+    width: 100%;
+}
+
+input::placeholder {
+    color: white;
+}
+
+.search-button {
+    position: absolute;
+    right: 7px;
+    top: 3px;
+    background-color: white;
+    border-radius: 50%;
+    border: 0;
+    color: black;
+    width: 35px;
+    height: 35px;
+    outline: 0;
+}
+
+.search-button:hover {
+    background-color: deeppink;
+    color: white;
+}

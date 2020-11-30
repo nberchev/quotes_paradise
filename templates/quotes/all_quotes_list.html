@@ -3,11 +3,16 @@
 {% load static %}
 
 {% block styles %}
-        <link rel="stylesheet" href="{% static 'css/quotes_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/quotes_list.css' %}">
 {% endblock %}
 
 {% block site_heading %}
     <h1 class="masthead-heading mb-0">All Quotes</h1>
+    <form method="get" action="{% url 'all quotes' %}" class="search-container">
+        {% csrf_token %}
+        {{ search_form.text }}
+        <button type="submit" class="search-button"><i class="fa fa-search fa-lg"></i></button>
+    </form>
 {% endblock %}
 
 {% block site_content %}
@@ -18,8 +23,8 @@
                     <div class="row align-items-center">
                         <div class="{% cycle 'col-lg-6 order-lg-2' 'col-lg-6' %}">
                             <div class="p-5">
-                                {% if quote.image_url %}
-                                    <img class="img-fluid rounded-circle" src="{{ quote.image_url }}" alt=".">
+                                {% if quote.image %}
+                                    <img class="img-fluid rounded-circle" src="{{ quote.image.url }}" alt=".">
                                 {% else %}
                                     <img class="img-fluid rounded-circle"
                                          src="{% static 'images/no_author_placeholder.png' %}" alt=".">
@@ -30,13 +35,12 @@
                             <div class="p-5">
                                 <h2 class="display-4 quote-author">{{ quote.author|upper }}</h2>
                                 <a href="{% url 'quote details' quote.pk %}" class="quote"><p>"{{ quote.text }}"</p></a>
+                                <h2 class="masthead-subheading mb-0">{{ quote.like_set.count }} Quote Points</h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
         {% endfor %}
-    {% else %}
-        <h1>You have not added any quotes yet. Go to <a href="{% url 'create quote' %}">this link</a> to add one</h1>
     {% endif %}
 {% endblock %}

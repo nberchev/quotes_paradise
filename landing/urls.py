@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import load_landing_page
+from .views import LandingPageView
 
 
 urlpatterns = [
-    path('', load_landing_page, name='landing'),
+    path('', LandingPageView.as_view(), name='landing'),
 ]

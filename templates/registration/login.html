@@ -16,12 +16,18 @@
         <div class="col-lg-6">
 
             <form method="post" action="{% url 'login' %}" class="quote-form">
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+
+                    </div>
+                {% endfor %}
                 {% csrf_token %}
                 {{ login_form.as_p }}
 
                 <button type="submit" class="add-quote-btn">Sign In</button>
                 <span style="color: black; font-size: 19px">Do not have an account?  <a style="color:orange"
-                                                 href="{% url 'register' %}">Sign up here</a></span>
+                                                href="{% url 'register' %}">Sign up here</a></span>
             </form>
         </div>
         <div class="col-lg-3"></div>

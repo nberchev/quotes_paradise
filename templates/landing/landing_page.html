@@ -3,12 +3,13 @@
 {% load static %}
 
 {% block styles %}
+    <link rel="stylesheet" href="{% static 'css/quotes_list.css' %}">
 {% endblock %}
 
 {% block site_heading %}
-                <h1 class="masthead-heading mb-0">Finally, all quotes go digital</h1>
-                <h2 class="masthead-subheading mb-0">Including all your dad jokes</h2>
-                <a href="{% url 'all quotes' %}" class="btn btn-primary btn-xl rounded-pill mt-5">Browse Quotes</a>
+    <h1 class="masthead-heading mb-0">Finally, all quotes go digital</h1>
+    <h2 class="masthead-subheading mb-0">Including all your dad jokes</h2>
+    <a href="{% url 'all quotes' %}" class="btn btn-primary btn-xl rounded-pill mt-5">Browse Quotes</a>
 {% endblock %}
 
 {% block site_content %}
@@ -23,8 +24,9 @@
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="p-5">
-                        <h2 class="display-4">Bill Gates</h2>
-                        <p>"Most governments take advantage of their scientists and listen to them. They don’t undermine
+                        <h2 class="display-4 quote-author">BILL GATES</h2>
+                        <p class="quote">"Most governments take advantage of their scientists and listen to them. They
+                            don’t undermine
                             them and attack them."</p>
                     </div>
                 </div>
@@ -43,10 +45,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="p-5">
-                        <h2 class="display-4">Uncle Peter</h2>
-                        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam
-                            sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione
-                            voluptatum molestiae adipisci, beatae obcaecati."</p>
+                        <h2 class="display-4 quote-author">UNCLE PETER</h2>
+                        <p class="quote">"5/4 of people admit that they’re bad with fractions."</p>
                     </div>
                 </div>
             </div>
@@ -65,11 +65,9 @@
                 </div>
                 <div class="col-lg-6 order-lg-1">
                     <div class="p-5">
-                        <h2 class="display-4">Albert Einstein</h2>
-                        <p>"If I was not a physicist, I would probably be a musician. I often think in music. I live my
-                            daydreams in music. I see my life in terms of music. … I cannot tell if I would have done
-                            any creative work of importance in music, but I do know that I get most joy in life out of
-                            my violin."</p>
+                        <h2 class="display-4 quote-author">ALBERT EINSTEIN</h2>
+                        <p class="quote">"The important thing is to not stop questioning. Curiosity has its own reason
+                            for existing."</p>
                     </div>
                 </div>
             </div>

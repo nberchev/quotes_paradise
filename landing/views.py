@@ -1,5 +1,5 @@
-from django.shortcuts import render
+from django.views.generic.base import TemplateView
 
 
-def load_landing_page(request):
-    return render(request, 'landing/landing_page.html')
+class LandingPageView(TemplateView):
+    template_name = 'landing/landing_page.html'

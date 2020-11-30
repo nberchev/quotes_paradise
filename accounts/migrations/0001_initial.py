@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
             name='ProfileUser',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('profile_picture', models.URLField(default='https://image.flaticon.com/icons/png/128/3135/3135715.png')),
+                ('profile_picture', models.URLField()),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

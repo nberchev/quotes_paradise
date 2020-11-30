@@ -4,7 +4,7 @@
 
 {% block site_heading %}
     <h1 class="masthead-heading mb-0">Are you sure you want to delete QUOTE #{{ quote.pk }}?</h1>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="submit" class="btn btn-primary btn-xl rounded-pill mt-5" value="Yes, delete the quote forever">
     </form>

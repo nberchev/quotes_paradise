@@ -1,5 +1,6 @@
 from django.contrib.auth import logout, login, authenticate
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from accounts.forms import LoginForm, RegisterForm, ProfileForm
 from accounts.models import ProfileUser
@@ -17,6 +18,9 @@ def profile_details(request, pk):
 
 def register_user(request):
     if request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('all quotes')
+
         context = {
             'user_form': RegisterForm(),
             'profile_form': ProfileForm(),
@@ -25,7 +29,7 @@ def register_user(request):
         return render(request, 'registration/register.html', context)
     else:
         user_form = RegisterForm(request.POST)
-        profile_form = ProfileForm(request.POST)
+        profile_form = ProfileForm(request.POST, request.FILES)
 
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
@@ -46,6 +50,9 @@ def register_user(request):
 
 def login_user(request):
     if request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('all quotes')
+
         context = {
             'login_form': LoginForm(),
         }
@@ -57,6 +64,7 @@ def login_user(request):
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
+
             user = authenticate(username=username, password=password)
 
             if user:
@@ -67,6 +75,7 @@ def login_user(request):
             'login_form': login_form,
         }
 
+        messages.error(request, 'Incorrect username and/or password')
         return render(request, 'registration/login.html', context)
 
 
