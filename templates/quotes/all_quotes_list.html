@@ -9,7 +9,6 @@
 {% block site_heading %}
     <h1 class="masthead-heading mb-0">All Quotes</h1>
     <form method="get" action="{% url 'all quotes' %}" class="search-container">
-        {% csrf_token %}
         {{ search_form.text }}
         <button type="submit" class="search-button"><i class="fa fa-search fa-lg"></i></button>
     </form>

@@ -3,14 +3,16 @@
 {% load static %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'css/create_quote.css' %}">
+    <link rel="stylesheet" href="{% static 'css/quotes_main.css' %}">
     <link rel="stylesheet" href="{% static 'css/quote_details.css' %}">
 {% endblock %}
 
 {% block site_heading %}
     <h1 class="masthead-heading mb-0">{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
     <h2 class="masthead-subheading mb-0">a.k.a. {{ profile.user.username }}</h2>
-
+    {% if request.user.profileuser == profile %}
+        <a href="{% url 'edit profile' %}" class="btn btn-primary btn-xl rounded-pill mt-5">Edit Profile</a>
+    {% endif %}
 {% endblock %}
 
 {% block site_content %}

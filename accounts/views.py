@@ -1,11 +1,13 @@
 from django.contrib.auth import logout, login, authenticate
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from accounts.forms import LoginForm, RegisterForm, ProfileForm
+from accounts.forms import LoginForm, RegisterForm, ProfileForm, EditUserForm, EditProfileForm
 from accounts.models import ProfileUser
 
 
+@login_required
 def profile_details(request, pk):
     profile = ProfileUser.objects.get(user_id=pk)
 
@@ -82,3 +84,27 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+
+@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        u_form = EditUserForm(request.POST, instance=request.user)
+        p_form = EditProfileForm(request.POST, request.FILES, instance=request.user.profileuser)
+
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            profile = request.user.profileuser
+            p_form.user = profile
+            p_form.save()
+            return redirect('user profile', pk=request.user.pk)
+    else:
+        u_form = EditUserForm(instance=request.user)
+        p_form = EditProfileForm(instance=request.user.profileuser)
+
+    context = {
+        'u_form': u_form,
+        'p_form': p_form,
+    }
+
+    return render(request, 'registration/edit_profile.html', context)

@@ -1,0 +1,44 @@
+{% extends 'shared/base.html' %}
+
+{% block site_heading %}
+    <h1 class="masthead-heading mb-0">Top 5 Authors by Quote Points</h1>
+{% endblock %}
+
+{% block site_content %}
+    <div id="container" style="width: 100%;">
+        <canvas id="pie-chart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+
+        var config = {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: {{ data|safe }},
+                    backgroundColor: [
+                        'red', 'orange', 'blue', 'lightblue', 'green'
+                    ],
+                    label: 'Likes'
+                }],
+                labels: {{ labels|safe }}
+            },
+            options: {
+                legend: {
+                    display: true,
+                    labels: {
+                        fontColor: 'white'
+                    }
+                },
+                responsive: true
+            }
+        };
+
+        window.onload = function () {
+            var ctx = document.getElementById('pie-chart').getContext('2d');
+            window.myPie = new Chart(ctx, config);
+        };
+
+    </script>
+{% endblock %}

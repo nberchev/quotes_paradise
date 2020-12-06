@@ -135,7 +135,7 @@ class EditQuote(generic.UpdateView):
     template_name = 'quotes/edit_quote.html'
 
     def form_valid(self, form):
-        user_profile = ProfileUser.objects.filter(user__pk=self.request.user.id)[0]
+        user_profile = ProfileUser.objects.filter(user_id=self.request.user.id)[0]
         form.instance.user = user_profile
         return super().form_valid(form)
 
@@ -164,3 +164,23 @@ def like_quote(request, pk):
         like.save()
 
     return redirect('quote details', pk)
+
+
+def pie_chart(request):
+    if request.method == 'GET':
+        if request.user.is_superuser:
+            labels = []
+            data = []
+
+            queryset = Quote.objects.annotate(num_points=Count('like')).order_by('-num_points')[:5]
+
+            for quote in queryset:
+                labels.append(quote.author)
+                data.append(quote.num_points)
+
+            return render(request, 'quotes/pie_chart.html', {
+                'labels': labels,
+                'data': data,
+            })
+        else:
+            return render(request, 'shared/unauthorized.html')

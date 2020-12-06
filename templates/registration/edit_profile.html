@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block site_heading %}
-    <h1 class="masthead-heading mb-0">Sign Up</h1>
+    <h1 class="masthead-heading mb-0">Edit Profile</h1>
 {% endblock %}
 
 {% block site_content %}
@@ -17,13 +17,9 @@
 
             <form class="quote-form" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ user_form.as_p }}
-                {{ profile_form.as_p }}
-                <button class="add-quote-btn" type="submit">Sign Up</button>
-                <span style="color: black; font-size: 19px">Have an account?
-                    <a href="{% url 'login' %}" style="font-size: 19px; color: orange;" >Sign in here</a>
-                </span>
-
+                {{ u_form.as_p }}
+                {{ p_form.as_p }}
+                <button class="add-quote-btn" type="submit">Edit</button>
             </form>
         </div>
         <div class="col-lg-3"></div>
