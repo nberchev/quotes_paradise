@@ -34,7 +34,7 @@
                             <div class="p-5">
                                 <h2 class="display-4 quote-author">{{ quote.author|upper }}</h2>
                                 <a href="{% url 'quote details' quote.pk %}" class="quote"><p>"{{ quote.text }}"</p></a>
-                                <h2 class="masthead-subheading mb-0">{{ quote.like_set.count }} Quote Points</h2>
+                                <h2 style="color: #ff2882;">{{ quote.like_set.count }} Quote Points</h2>
                             </div>
                         </div>
                     </div>

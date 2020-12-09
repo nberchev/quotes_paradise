@@ -1,6 +1,10 @@
 body {
     font-family: Lato, sans-serif;
     background-color: #85144B;
+    overflow-x: hidden;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -149,6 +153,10 @@ header.masthead .bg-circle-4 {
 
 .btn-secondary:focus {
     box-shadow: 0 0 0 .2rem rgba(255, 106, 0, .5);
+}
+
+.site-content {
+  flex: 1;
 }
 
 /*::-webkit-scrollbar {*/

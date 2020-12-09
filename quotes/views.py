@@ -51,7 +51,7 @@ class MyQuotes(generic.ListView):
 
     def get_queryset(self):
         user_profile = ProfileUser.objects.filter(user__pk=self.request.user.id)[0]
-        quotes = Quote.objects.filter(user=user_profile)
+        quotes = Quote.objects.filter(user=user_profile).annotate(num_points=Count('like')).order_by('-num_points')
 
         if quotes:
             return quotes
@@ -135,7 +135,7 @@ class EditQuote(generic.UpdateView):
     template_name = 'quotes/edit_quote.html'
 
     def form_valid(self, form):
-        user_profile = ProfileUser.objects.filter(user_id=self.request.user.id)[0]
+        user_profile = self.get_object().user
         form.instance.user = user_profile
         return super().form_valid(form)
 
